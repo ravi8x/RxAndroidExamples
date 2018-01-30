@@ -10,19 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".basics.Example1Activity">
+        <activity android:name=".basics.Example1Activity" />
+        <activity android:name=".basics.Example2Activity" />
+        <activity android:name=".basics.Example3Activity">
 
         </activity>
-        <activity android:name=".basics.Example2Activity" >
+        <activity android:name=".basics.Example4Activity" />
+        <activity android:name=".observers.ObservableActivity">
+
         </activity>
-        <activity android:name=".basics.Example3Activity" >
+        <activity android:name=".observers.FlowableObserverActivity" />
+        <activity android:name=".observers.SingleObserverActivity"></activity>
+        <activity android:name=".observers.MaybeObserverActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".basics.Example4Activity"></activity>
+        <activity android:name=".observers.CompletableObserverActivity"></activity>
     </application>
 
 </manifest>
