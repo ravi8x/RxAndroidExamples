@@ -27,9 +27,7 @@ public class FlowableObserverActivity extends AppCompatActivity {
 
         Observer<Note> notesObserver = getNotesObserver();
 
-        notesObservalbe.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribeWith(notesObserver);
+        // TODO - yet to complete this example
     }
 
     private Observer<Note> getNotesObserver() {

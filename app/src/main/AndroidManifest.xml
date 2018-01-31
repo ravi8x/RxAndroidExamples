@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="info.androidhive.rxandroidexamples">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,23 +14,25 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".basics.Example1Activity" />
         <activity android:name=".basics.Example2Activity" />
-        <activity android:name=".basics.Example3Activity">
-
-        </activity>
+        <activity android:name=".basics.Example3Activity" />
         <activity android:name=".basics.Example4Activity" />
-        <activity android:name=".observers.ObservableActivity">
+        <activity android:name=".observers.ObservableActivity" />
+        <activity android:name=".observers.FlowableObserverActivity" />
+        <activity android:name=".observers.SingleObserverActivity" />
+        <activity android:name=".observers.MaybeObserverActivity" />
+        <activity android:name=".observers.CompletableObserverActivity" />
+        <activity android:name=".networking.volley.JsonObjectRequestActivity" />
+        <activity android:name=".networking.retrofit.ContactsListActivity">
 
         </activity>
-        <activity android:name=".observers.FlowableObserverActivity" />
-        <activity android:name=".observers.SingleObserverActivity"></activity>
-        <activity android:name=".observers.MaybeObserverActivity">
+        <activity android:name=".networking.retrofit.ContactsSearchLocalActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".observers.CompletableObserverActivity"></activity>
+        <activity android:name=".networking.retrofit.ContactsSearchRemoteActivity"></activity>
     </application>
 
 </manifest>
