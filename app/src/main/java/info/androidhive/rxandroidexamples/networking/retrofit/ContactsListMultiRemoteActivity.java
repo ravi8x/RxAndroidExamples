@@ -85,10 +85,15 @@ public class ContactsListMultiRemoteActivity extends AppCompatActivity implement
                 });
     }
 
+    // merging two array lists
     private List<Contact> compareAndMergeContacts(List<Contact> gmailContacts, List<Contact> linkedInContacts) {
         List<Contact> contacts = new ArrayList<>();
         contacts.addAll(gmailContacts);
-        contacts.addAll(linkedInContacts);
+        for (Contact contact : linkedInContacts) {
+            if (!contacts.contains(contact)) {
+                contacts.add(contact);
+            }
+        }
         return contacts;
     }
 

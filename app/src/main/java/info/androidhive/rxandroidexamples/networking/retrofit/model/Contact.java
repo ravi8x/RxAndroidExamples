@@ -13,6 +13,7 @@ public class Contact {
     String profileImage;
 
     String phone;
+    String email;
 
     public String getName() {
         return name;
@@ -24,5 +25,17 @@ public class Contact {
 
     public String getPhone() {
         return phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null && (obj instanceof Contact)) {
+            return ((Contact) obj).getEmail().equalsIgnoreCase(email);
+        }
+        return false;
     }
 }

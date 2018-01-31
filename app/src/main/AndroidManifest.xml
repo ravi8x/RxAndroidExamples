@@ -26,13 +26,15 @@
         <activity android:name=".networking.retrofit.ContactsSearchLocalActivity">
 
         </activity>
-        <activity android:name=".networking.retrofit.ContactsSearchRemoteActivity" />
-        <activity android:name=".networking.retrofit.ContactsListMultiRemoteActivity">
+        <activity android:name=".networking.retrofit.ContactsSearchRemoteActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".networking.retrofit.ContactsListMultiRemoteActivity">
+
         </activity>
     </application>
 
