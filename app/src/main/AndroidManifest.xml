@@ -22,17 +22,18 @@
         <activity android:name=".observers.MaybeObserverActivity" />
         <activity android:name=".observers.CompletableObserverActivity" />
         <activity android:name=".networking.volley.JsonObjectRequestActivity" />
-        <activity android:name=".networking.retrofit.ContactsListActivity">
+        <activity android:name=".networking.retrofit.ContactsListActivity"></activity>
+        <activity android:name=".networking.retrofit.ContactsSearchLocalActivity">
 
         </activity>
-        <activity android:name=".networking.retrofit.ContactsSearchLocalActivity">
+        <activity android:name=".networking.retrofit.ContactsSearchRemoteActivity" />
+        <activity android:name=".networking.retrofit.ContactsListMultiRemoteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".networking.retrofit.ContactsSearchRemoteActivity"></activity>
     </application>
 
 </manifest>

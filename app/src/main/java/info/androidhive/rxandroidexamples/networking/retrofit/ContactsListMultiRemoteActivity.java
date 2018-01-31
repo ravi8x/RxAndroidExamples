@@ -6,45 +6,32 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
-import android.widget.EditText;
-
-import com.jakewharton.rxbinding2.widget.RxTextView;
-import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import info.androidhive.rxandroidexamples.R;
 import info.androidhive.rxandroidexamples.networking.retrofit.adapter.ContactsAdapter;
-import info.androidhive.rxandroidexamples.networking.retrofit.adapter.ContactsAdapterFilterable;
 import info.androidhive.rxandroidexamples.networking.retrofit.model.Contact;
-import io.reactivex.Observer;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Function;
-import io.reactivex.functions.Predicate;
-import io.reactivex.observers.DisposableObserver;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class ContactsSearchLocalActivity extends AppCompatActivity implements ContactsAdapterFilterable.ContactsAdapterListener {
+public class ContactsListMultiRemoteActivity extends AppCompatActivity implements ContactsAdapter.ContactsAdapterListener {
 
-    private static final String TAG = ContactsSearchLocalActivity.class.getSimpleName();
+    private static final String TAG = ContactsListMultiRemoteActivity.class.getSimpleName();
 
     private CompositeDisposable disposable = new CompositeDisposable();
     private ApiService apiService;
-    private ContactsAdapterFilterable mAdapter;
+    private ContactsAdapter mAdapter;
     private List<Contact> contactsList = new ArrayList<>();
-
-    @BindView(R.id.input_search)
-    EditText inputSearch;
-
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -54,10 +41,10 @@ public class ContactsSearchLocalActivity extends AppCompatActivity implements Co
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contacts_search);
+        setContentView(R.layout.activity_contacts_list_multi_remote);
         unbinder = ButterKnife.bind(this);
 
-        mAdapter = new ContactsAdapterFilterable(this, contactsList, this);
+        mAdapter = new ContactsAdapter(this, contactsList, this);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -68,47 +55,18 @@ public class ContactsSearchLocalActivity extends AppCompatActivity implements Co
         apiService = ApiClient.getClient().create(ApiService.class);
 
 
-        RxTextView.textChangeEvents(inputSearch)
-                .debounce(300, TimeUnit.MILLISECONDS)
-                /*.filter(new Predicate<TextViewTextChangeEvent>() {
-                    @Override
-                    public boolean test(TextViewTextChangeEvent textViewTextChangeEvent) throws Exception {
-                        return TextUtils.isEmpty(textViewTextChangeEvent.text().toString()) || textViewTextChangeEvent.text().toString().length() > 2;
-                    }
-                })*/
-                //.distinctUntilChanged()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(searchContacts());
-
-
         // source: `gmail` or `linkedin`
-        fetchContacts("gmail");
+        fetchContactsFromMultipleApiSources();
     }
 
-    private DisposableObserver<TextViewTextChangeEvent> searchContacts() {
-        return new DisposableObserver<TextViewTextChangeEvent>() {
-            @Override
-            public void onNext(TextViewTextChangeEvent textViewTextChangeEvent) {
-                Log.e(TAG, "Search: " + textViewTextChangeEvent.text());
-                mAdapter.getFilter().filter(textViewTextChangeEvent.text());
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        };
-    }
-
-    private void fetchContacts(String source) {
-        disposable.add(apiService
-                .getContacts(source, null)
+    private void fetchContactsFromMultipleApiSources() {
+        Single.zip(getGmailContacts(), getLinkedInContacts(),
+                new BiFunction<List<Contact>, List<Contact>, List<Contact>>() {
+                    @Override
+                    public List<Contact> apply(List<Contact> gmailContacts, List<Contact> linkedInContacts) throws Exception {
+                        return compareAndMergeContacts(gmailContacts, linkedInContacts);
+                    }
+                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver<List<Contact>>() {
@@ -124,8 +82,24 @@ public class ContactsSearchLocalActivity extends AppCompatActivity implements Co
                     public void onError(Throwable e) {
 
                     }
-                }));
+                });
     }
+
+    private List<Contact> compareAndMergeContacts(List<Contact> gmailContacts, List<Contact> linkedInContacts) {
+        List<Contact> contacts = new ArrayList<>();
+        contacts.addAll(gmailContacts);
+        contacts.addAll(linkedInContacts);
+        return contacts;
+    }
+
+    public Single<List<Contact>> getGmailContacts() {
+        return apiService.getContacts("gmail", null);
+    }
+
+    public Single<List<Contact>> getLinkedInContacts() {
+        return apiService.getContacts("linkedin", null);
+    }
+
 
     @Override
     protected void onDestroy() {
