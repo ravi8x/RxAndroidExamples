@@ -27,6 +27,7 @@ import info.androidhive.rxandroidexamples.networking.retrofit.model.Contact;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
 import io.reactivex.observers.DisposableObserver;
@@ -68,7 +69,7 @@ public class ContactsSearchLocalActivity extends AppCompatActivity implements Co
         apiService = ApiClient.getClient().create(ApiService.class);
 
 
-        RxTextView.textChangeEvents(inputSearch)
+        disposable.add(RxTextView.textChangeEvents(inputSearch)
                 .debounce(300, TimeUnit.MILLISECONDS)
                 /*.filter(new Predicate<TextViewTextChangeEvent>() {
                     @Override
@@ -79,7 +80,7 @@ public class ContactsSearchLocalActivity extends AppCompatActivity implements Co
                 //.distinctUntilChanged()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(searchContacts());
+                .subscribeWith(searchContacts()));
 
 
         // source: `gmail` or `linkedin`

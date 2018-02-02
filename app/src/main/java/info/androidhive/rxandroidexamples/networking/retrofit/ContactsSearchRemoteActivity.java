@@ -76,7 +76,7 @@ public class ContactsSearchRemoteActivity extends AppCompatActivity implements C
 
         DisposableObserver<List<Contact>> observer = getSearchObserver();
 
-        publishSubject.debounce(300, TimeUnit.MILLISECONDS)
+        disposable.add(publishSubject.debounce(300, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
                 .switchMapSingle(new Function<String, Single<List<Contact>>>() {
                     @Override
@@ -87,21 +87,21 @@ public class ContactsSearchRemoteActivity extends AppCompatActivity implements C
                                 .observeOn(AndroidSchedulers.mainThread());
                     }
                 })
-                .subscribeWith(observer);
+                .subscribeWith(observer));
 
 
         // skipInitialValue() - skip for the first time when edittext empty
-        RxTextView.textChangeEvents(inputSearch)
+        disposable.add(RxTextView.textChangeEvents(inputSearch)
                 .skipInitialValue()
                 .debounce(300, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(searchContactsTextWatcher());
+                .subscribeWith(searchContactsTextWatcher()));
 
+        disposable.add(observer);
 
         // passing empty string fetches all the contacts
         publishSubject.onNext("");
-        disposable.add(observer);
     }
 
     private DisposableObserver<List<Contact>> getSearchObserver() {

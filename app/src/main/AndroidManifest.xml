@@ -22,20 +22,46 @@
         <activity android:name=".observers.MaybeObserverActivity" />
         <activity android:name=".observers.CompletableObserverActivity" />
         <activity android:name=".networking.volley.JsonObjectRequestActivity" />
-        <activity android:name=".networking.retrofit.ContactsListActivity"></activity>
-        <activity android:name=".networking.retrofit.ContactsSearchLocalActivity">
-
-        </activity>
-        <activity android:name=".networking.retrofit.ContactsSearchRemoteActivity" >
+        <activity android:name=".networking.retrofit.ContactsListActivity" />
+        <activity android:name=".networking.retrofit.ContactsSearchLocalActivity" />
+        <activity android:name=".networking.retrofit.ContactsSearchRemoteActivity" />
+        <activity android:name=".networking.retrofit.ContactsListMultiRemoteActivity" />
+        <activity android:name=".rxbinding.ViewBindingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".networking.retrofit.ContactsListMultiRemoteActivity">
-
-        </activity>
+        <activity android:name=".rxbinding.SpinnerRxBindingActivity" />
+        <activity android:name=".rxbinding.RecyclerViewRxBindingActivity" />
+        <activity android:name=".recyclerview.RecyclerViewPagingActivity" />
+        <activity android:name=".operators.MapOperatorActivity" />
+        <activity android:name=".operators.FlatMapActivity" />
+        <activity android:name=".operators.SwitchMapOperatorActivity" />
+        <activity android:name=".operators.BufferOperatorActivity" />
+        <activity android:name=".operators.ReduceOperatorActivity" />
+        <activity android:name=".operators.ConcatOperatorActivity" />
+        <activity android:name=".operators.ReplayOperatorActivity" />
+        <activity android:name=".operators.RangeOperatorActivity" />
+        <activity android:name=".operators.MergeOperatorActivity" />
+        <activity android:name=".operators.ZipOperatorActivity" />
+        <activity android:name=".operators.FilterOperatorActivity" />
+        <activity android:name=".operators.TakeOperatorActivity" />
+        <activity android:name=".operators.JustOperatorActivity" />
+        <activity android:name=".operators.FromOperatorActivity" />
+        <activity android:name=".observers.PublishSubjectActivity" />
+        <activity android:name=".observers.ReplaySubjectActivity" />
+        <activity android:name=".observers.BehaviorSubjectActivity" />
+        <activity android:name=".observers.AsyncSubjectActivity" />
+        <activity android:name=".operators.GroupByOperatorActivity" />
+        <activity android:name=".operators.SkipOperatorActivity" />
+        <activity android:name=".operators.JoinOperatorActivity" />
+        <activity android:name=".operators.TakeUntilOperatorActivity" />
+        <activity android:name=".operators.SumOperatorActivity" />
+        <activity android:name=".operators.MaxOperatorActivity" />
+        <activity android:name=".operators.MinOperatorActivity" />
+        <activity android:name=".operators.CountOperatorActivity"></activity>
     </application>
 
 </manifest>
