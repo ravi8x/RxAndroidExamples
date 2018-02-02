@@ -7,6 +7,14 @@ import info.androidhive.rxandroidexamples.R;
 
 public class FlatMapActivity extends AppCompatActivity {
 
+    /**
+     * https://github.com/ReactiveX/RxJava/issues/442
+     * If they are dependent on each other, then map/flatMap off the first into the second.
+            geocodeAddressRequest.flatMap( address -> {
+            return api.createRide(address)
+        })
+     * */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
