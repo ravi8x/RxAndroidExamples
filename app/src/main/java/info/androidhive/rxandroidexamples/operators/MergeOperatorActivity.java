@@ -110,7 +110,6 @@ public class MergeOperatorActivity extends AppCompatActivity {
             users.add(user);
         }
         return Observable
-                .interval(4, TimeUnit.SECONDS)
                 .create(new ObservableOnSubscribe<User>() {
                     @Override
                     public void subscribe(ObservableEmitter<User> emitter) throws Exception {
@@ -141,7 +140,6 @@ public class MergeOperatorActivity extends AppCompatActivity {
             users.add(user);
         }
         return Observable
-                .interval(2, TimeUnit.SECONDS)
                 .create(new ObservableOnSubscribe<User>() {
                     @Override
                     public void subscribe(ObservableEmitter<User> emitter) throws Exception {

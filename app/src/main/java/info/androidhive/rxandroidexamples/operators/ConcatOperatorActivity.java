@@ -36,7 +36,7 @@ public class ConcatOperatorActivity extends AppCompatActivity {
 
         disposable.add(
                 Observable
-                        .concat(getMaleObservable1(), getFemaleObservable1())
+                        .merge(getMaleObservable1(), getFemaleObservable1())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableObserver<User>() {
                             @Override
@@ -114,7 +114,6 @@ public class ConcatOperatorActivity extends AppCompatActivity {
             users.add(user);
         }
         return Observable
-                .interval(4, TimeUnit.SECONDS)
                 .create(new ObservableOnSubscribe<User>() {
                     @Override
                     public void subscribe(ObservableEmitter<User> emitter) throws Exception {
@@ -145,7 +144,6 @@ public class ConcatOperatorActivity extends AppCompatActivity {
             users.add(user);
         }
         return Observable
-                .interval(2, TimeUnit.SECONDS)
                 .create(new ObservableOnSubscribe<User>() {
                     @Override
                     public void subscribe(ObservableEmitter<User> emitter) throws Exception {
