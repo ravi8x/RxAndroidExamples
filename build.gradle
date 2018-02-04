@@ -47,6 +47,7 @@ ext {
     butterKnfie = '8.8.1'
     rxjava = '2.1.9'
     rxandroid = '2.0.1'
+    rxjavaMath = '1.0.0'
     rxbinding = '2.0.0'
     volley = '1.0.19'
     retrofit = '2.0.0'

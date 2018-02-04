@@ -11,5 +11,7 @@ public class JustOperatorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_just_operator);
+
+        // TODO - write limitations of just
     }
 }
