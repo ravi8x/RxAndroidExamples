@@ -25,6 +25,7 @@ dependencies {
     implementation "com.android.support:design:$rootProject.supportLibraryVersion"
 
     implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation "junit:junit:$rootProject.junitVersion"
 
     androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
