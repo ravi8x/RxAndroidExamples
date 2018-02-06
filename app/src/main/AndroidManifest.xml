@@ -32,7 +32,9 @@
         <activity android:name=".recyclerview.RecyclerViewPagingActivity" />
         <activity android:name=".operators.MapOperatorActivity" />
         <activity android:name=".operators.FlatMapActivity" />
-        <activity android:name=".operators.SwitchMapOperatorActivity" />
+        <activity android:name=".operators.SwitchMapOperatorActivity">
+
+        </activity>
         <activity android:name=".operators.BufferOperatorActivity" />
         <activity android:name=".operators.ReduceOperatorActivity" />
         <activity android:name=".operators.ConcatOperatorActivity" />
@@ -42,11 +44,7 @@
         <activity android:name=".operators.RangeOperatorActivity" />
         <activity android:name=".operators.MergeOperatorActivity" />
         <activity android:name=".operators.ZipOperatorActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".operators.FilterOperatorActivity" />
         <activity android:name=".operators.TakeOperatorActivity">
@@ -66,9 +64,17 @@
         <activity android:name=".operators.TakeUntilOperatorActivity">
 
         </activity>
-        <activity android:name=".operators.SumOperatorActivity" />
-        <activity android:name=".operators.MaxOperatorActivity" />
-        <activity android:name=".operators.MinOperatorActivity" />
+        <activity android:name=".operators.SumOperatorActivity">
+
+        </activity>
+        <activity android:name=".operators.MaxOperatorActivity"></activity>
+        <activity android:name=".operators.MinOperatorActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".operators.CountOperatorActivity" />
         <activity android:name=".operators.DebounceOperatorActivity"></activity>
         <activity android:name=".operators.RepeatOperatorActivity">

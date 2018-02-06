@@ -35,6 +35,7 @@ dependencies {
 
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroid"
+    implementation "io.reactivex:rxjava-math:$rootProject.rxjavaMath"
 
     // butter knife
     implementation "com.jakewharton:butterknife:$rootProject.butterKnfie"
@@ -55,5 +56,4 @@ dependencies {
 
     implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbinding"
 
-    implementation "io.reactivex:rxjava-math:$rootProject.rxjavaMath"
 }
