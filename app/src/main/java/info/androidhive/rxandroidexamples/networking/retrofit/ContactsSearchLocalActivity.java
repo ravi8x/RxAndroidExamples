@@ -70,6 +70,7 @@ public class ContactsSearchLocalActivity extends AppCompatActivity implements Co
 
 
         disposable.add(RxTextView.textChangeEvents(inputSearch)
+                .skipInitialValue()
                 .debounce(300, TimeUnit.MILLISECONDS)
                 /*.filter(new Predicate<TextViewTextChangeEvent>() {
                     @Override
