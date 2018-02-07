@@ -29,7 +29,6 @@ public class ZipOperatorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zip_operator);
 
-
         disposable.add(Observable.zip(
                 getAddressObservable(), getPhotosObservable(), new BiFunction<Address, Photo, User>() {
                     @Override

@@ -5,5 +5,7 @@ package info.androidhive.rxandroidexamples.app;
  */
 
 public class Const {
+    // JSON endpoint used for demos
+    // will return list of contacts
     public static final String BASE_URL = "https://api.androidhive.info/json/";
 }

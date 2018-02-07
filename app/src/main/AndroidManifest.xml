@@ -12,10 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".basics.Example1Activity" />
-        <activity android:name=".basics.Example2Activity" />
-        <activity android:name=".basics.Example3Activity" />
-        <activity android:name=".basics.Example4Activity" />
+        <activity android:name=".basics.Example1Activity" >
+
+        </activity>
+        <activity android:name=".basics.Example2Activity" >
+
+        </activity>
+        <activity android:name=".basics.Example3Activity" >
+
+        </activity>
+        <activity android:name=".basics.Example4Activity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".observers.ObservableActivity" />
         <activity android:name=".observers.FlowableObserverActivity" />
         <activity android:name=".observers.SingleObserverActivity" />
@@ -69,11 +81,7 @@
         </activity>
         <activity android:name=".operators.MaxOperatorActivity"></activity>
         <activity android:name=".operators.MinOperatorActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".operators.CountOperatorActivity" />
         <activity android:name=".operators.DebounceOperatorActivity"></activity>

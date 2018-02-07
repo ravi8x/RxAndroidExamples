@@ -1,18 +1,11 @@
 package info.androidhive.rxandroidexamples.basics;
 
-import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.TextView;
 
-import java.util.concurrent.Callable;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import info.androidhive.rxandroidexamples.R;
 import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -23,44 +16,54 @@ import io.reactivex.schedulers.Schedulers;
 public class Example2Activity extends AppCompatActivity {
 
     /**
-     * With subscribe and un-subscribe
+     * Basic Observable, Observer, Subscriber example
+     * Observable emits list of animal names
+     * You can see Disposable introduced in this example
      */
     private static final String TAG = Example2Activity.class.getSimpleName();
 
-    private final CompositeDisposable disposables = new CompositeDisposable();
+    private Disposable disposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_example2);
 
+        // observable
         Observable<String> animalsObservable = getAnimalsObservable();
 
-        DisposableObserver<String> animalsObserver = getAnimalsObserver();
+        // observer
+        Observer<String> animalsObserver = getAnimalsObserver();
 
-        disposables.add(
-                animalsObservable
+        // observer subscribing to observable
+        animalsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(animalsObserver));
+                .subscribeWith(animalsObserver);
     }
 
-    private DisposableObserver<String> getAnimalsObserver() {
-        return new DisposableObserver<String>() {
+    private Observer<String> getAnimalsObserver() {
+        return new Observer<String>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.d(TAG, "onSubscribe");
+                disposable = d;
+            }
 
             @Override
             public void onNext(String s) {
-                Log.e(TAG, "Name: " + s);
+                Log.d(TAG, "Name: " + s);
             }
 
             @Override
             public void onError(Throwable e) {
-
+                Log.e(TAG, "onError: " + e.getMessage());
             }
 
             @Override
             public void onComplete() {
-                Log.e(TAG, "All items are emitted!");
+                Log.d(TAG, "All items are emitted!");
             }
         };
     }
@@ -74,6 +77,6 @@ public class Example2Activity extends AppCompatActivity {
         super.onDestroy();
 
         // don't send events once the activity is destroyed
-        disposables.clear();
+        disposable.dispose();
     }
 }
