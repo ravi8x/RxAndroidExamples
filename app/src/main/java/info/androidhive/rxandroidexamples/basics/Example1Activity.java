@@ -34,8 +34,8 @@ public class Example1Activity extends AppCompatActivity {
 
         // observer subscribing to observable
         animalsObservable
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(animalsObserver);
     }
 

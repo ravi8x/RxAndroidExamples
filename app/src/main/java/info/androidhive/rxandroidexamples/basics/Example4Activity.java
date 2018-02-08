@@ -44,8 +44,8 @@ public class Example4Activity extends AppCompatActivity {
         // add to Composite observable
         // .map() operator is used to turn the note into all uppercase letters
         disposable.add(getNotesObservable()
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .map(new Function<Note, Note>() {
                     @Override
                     public Note apply(Note note) throws Exception {
