@@ -1,4 +1,4 @@
-package info.androidhive.rxandroidexamples.observers;
+package info.androidhive.rxandroidexamples.operators;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,29 +13,62 @@ import info.androidhive.rxandroidexamples.observers.model.Note;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class ObservableActivity extends AppCompatActivity {
+public class DistinctOperatorActivity extends AppCompatActivity {
 
-    private static final String TAG = ObservableActivity.class.getSimpleName();
-
+    private static final String TAG = DistinctOperatorActivity.class.getSimpleName();
     private CompositeDisposable disposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_observable);
+        setContentView(R.layout.activity_distinct_operator);
 
+        Observable<Integer> numbersObservable = Observable.just(100, 200, 100, 300,
+                404, 4, 2, 404);
+
+        numbersObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .distinct()
+                .subscribe(new Observer<Integer>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Integer integer) {
+                        Log.d(TAG, "onNext: " + integer);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+        // Example 2
         Observable<Note> notesObservable = getNotesObservable();
 
         DisposableObserver<Note> notesObserver = getNotesObserver();
 
         disposable.add(notesObservable.observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
+                .distinct()
                 .subscribeWith(notesObserver));
+
     }
 
     private DisposableObserver<Note> getNotesObserver() {
@@ -81,8 +114,11 @@ public class ObservableActivity extends AppCompatActivity {
         List<Note> notes = new ArrayList<>();
         notes.add(new Note(1, "Buy tooth paste!"));
         notes.add(new Note(2, "Call brother!"));
-        notes.add(new Note(3, "Watch Narcos tonight!"));
+        notes.add(new Note(3, "Call brother!"));
         notes.add(new Note(4, "Pay power bill!"));
+        notes.add(new Note(5, "Watch Narcos tonight!"));
+        notes.add(new Note(6, "Buy tooth paste!"));
+        notes.add(new Note(7, "Pay power bill!"));
 
         return notes;
     }

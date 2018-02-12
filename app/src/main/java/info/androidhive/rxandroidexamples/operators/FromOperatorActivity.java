@@ -25,7 +25,7 @@ public class FromOperatorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_from_operator);
-        
+
         Integer[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
                 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 
@@ -55,6 +55,26 @@ public class FromOperatorActivity extends AppCompatActivity {
                         Log.e(TAG, "All numbers emitted!");
                     }
                 }));
+
+        Observable.fromArray(numbers)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DisposableObserver<Integer>() {
+                    @Override
+                    public void onNext(Integer integer) {
+                        Log.e(TAG, "Number: " + integer);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.e(TAG, "All numbers emitted!");
+                    }
+                });
     }
 
     @Override

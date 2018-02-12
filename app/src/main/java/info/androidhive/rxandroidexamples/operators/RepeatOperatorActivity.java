@@ -8,6 +8,7 @@ import info.androidhive.rxandroidexamples.R;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.BooleanSupplier;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
 
@@ -31,6 +32,12 @@ public class RepeatOperatorActivity extends AppCompatActivity {
                         return integer % 2 == 0;
                     }
                 })*/
+                .repeatUntil(new BooleanSupplier() {
+                    @Override
+                    public boolean getAsBoolean() throws Exception {
+                        return true;
+                    }
+                })
                 .subscribe(new Observer<Integer>() {
                     @Override
                     public void onSubscribe(Disposable d) {

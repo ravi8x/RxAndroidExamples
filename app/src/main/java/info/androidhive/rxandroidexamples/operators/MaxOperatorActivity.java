@@ -1,16 +1,10 @@
 package info.androidhive.rxandroidexamples.operators;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import info.androidhive.rxandroidexamples.R;
-import io.reactivex.MaybeObserver;
-import io.reactivex.Observer;
-import io.reactivex.Observer;
-import io.reactivex.subscribers.TestSubscriber;
-
 import rx.Observable;
 import rx.Subscriber;
 import rx.observables.MathObservable;

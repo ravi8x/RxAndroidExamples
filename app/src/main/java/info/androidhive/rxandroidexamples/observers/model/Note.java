@@ -20,4 +20,25 @@ public class Note {
     public String getNote() {
         return note;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Note)) {
+            return false;
+        }
+
+        return note.equalsIgnoreCase(((Note) obj).getNote());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + (this.note != null ? this.note.hashCode() : 0);
+        return hash;
+    }
+
 }
