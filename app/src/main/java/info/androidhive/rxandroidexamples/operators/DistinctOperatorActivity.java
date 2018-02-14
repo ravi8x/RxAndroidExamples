@@ -30,8 +30,7 @@ public class DistinctOperatorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_distinct_operator);
 
-        Observable<Integer> numbersObservable = Observable.just(100, 200, 100, 300,
-                404, 4, 2, 404);
+        Observable<Integer> numbersObservable = Observable.just(10,10, 15, 20, 100, 200, 100, 300, 20, 100);
 
         numbersObservable
                 .subscribeOn(Schedulers.io())
@@ -64,10 +63,10 @@ public class DistinctOperatorActivity extends AppCompatActivity {
 
         DisposableObserver<Note> notesObserver = getNotesObserver();
 
-        disposable.add(notesObservable.observeOn(Schedulers.io())
+        notesObservable.observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .distinct()
-                .subscribeWith(notesObserver));
+                .subscribeWith(notesObserver);
 
     }
 

@@ -40,5 +40,4 @@ public class Note {
         hash = 53 * hash + (this.note != null ? this.note.hashCode() : 0);
         return hash;
     }
-
 }

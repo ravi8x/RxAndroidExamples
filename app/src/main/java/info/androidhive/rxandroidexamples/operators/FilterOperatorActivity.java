@@ -60,7 +60,7 @@ public class FilterOperatorActivity extends AppCompatActivity {
 
         Observable<User> userObservable = getUsersObservable();
 
-        disposable.add(userObservable
+        userObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .filter(new Predicate<User>() {
@@ -84,7 +84,7 @@ public class FilterOperatorActivity extends AppCompatActivity {
                     public void onComplete() {
 
                     }
-                }));
+                });
     }
 
     private Observable<User> getUsersObservable() {

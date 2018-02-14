@@ -18,16 +18,16 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class ObservableActivity extends AppCompatActivity {
+public class ObserverActivity extends AppCompatActivity {
 
-    private static final String TAG = ObservableActivity.class.getSimpleName();
+    private static final String TAG = ObserverActivity.class.getSimpleName();
 
     private CompositeDisposable disposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_observable);
+        setContentView(R.layout.activity_observer);
 
         Observable<Note> notesObservable = getNotesObservable();
 

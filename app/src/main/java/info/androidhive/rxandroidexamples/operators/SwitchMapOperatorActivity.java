@@ -32,8 +32,6 @@ public class SwitchMapOperatorActivity extends AppCompatActivity {
 
 
         // it always emits 6 as it un-subscribes the before observer
-        // point to remote search example
-
         integerObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -46,6 +44,7 @@ public class SwitchMapOperatorActivity extends AppCompatActivity {
                 .subscribe(new Observer<Integer>() {
                     @Override
                     public void onSubscribe(Disposable d) {
+                        Log.d(TAG, "onSubscribe");
                         disposable = d;
                     }
 
@@ -61,7 +60,7 @@ public class SwitchMapOperatorActivity extends AppCompatActivity {
 
                     @Override
                     public void onComplete() {
-
+                        Log.d(TAG, "All users emitted!");
                     }
                 });
     }

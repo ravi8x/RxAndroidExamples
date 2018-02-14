@@ -1,7 +1,7 @@
 package info.androidhive.rxandroidexamples.operators;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -20,21 +20,20 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-public class FlatMapActivity extends AppCompatActivity {
+public class ConcatMapOperatorActivity extends AppCompatActivity {
 
-    private static final String TAG = FlatMapActivity.class.getSimpleName();
+    private static final String TAG = ConcatMapOperatorActivity.class.getSimpleName();
 
     private Disposable disposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flat_map);
-
+        setContentView(R.layout.activity_concat_map);
         getUsersObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(new Function<User, Observable<User>>() {
+                .concatMap(new Function<User, Observable<User>>() {
 
                     @Override
                     public Observable<User> apply(User user) throws Exception {

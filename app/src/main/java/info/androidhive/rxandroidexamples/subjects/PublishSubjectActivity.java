@@ -1,11 +1,10 @@
-package info.androidhive.rxandroidexamples.observers;
+package info.androidhive.rxandroidexamples.subjects;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import info.androidhive.rxandroidexamples.R;
-import info.androidhive.rxandroidexamples.operators.ReplayOperatorActivity;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 

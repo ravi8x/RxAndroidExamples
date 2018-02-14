@@ -12,14 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".basics.Example1Activity"></activity>
+        <activity android:name=".basics.Example1Activity" />
         <activity android:name=".basics.Example2Activity" />
-        <activity android:name=".basics.Example3Activity"></activity>
-        <activity android:name=".basics.Example4Activity"></activity>
-        <activity android:name=".basics.Example5Activity">
-
-        </activity>
-        <activity android:name=".observers.ObservableActivity" />
+        <activity android:name=".basics.Example3Activity" />
+        <activity android:name=".basics.Example4Activity" />
+        <activity android:name=".basics.Example5Activity"></activity>
+        <activity android:name=".observers.ObserverActivity" />
         <activity android:name=".observers.FlowableObserverActivity" />
         <activity android:name=".observers.SingleObserverActivity" />
         <activity android:name=".observers.MaybeObserverActivity" />
@@ -33,9 +31,19 @@
         <activity android:name=".rxbinding.SpinnerRxBindingActivity" />
         <activity android:name=".rxbinding.RecyclerViewRxBindingActivity" />
         <activity android:name=".recyclerview.RecyclerViewPagingActivity" />
-        <activity android:name=".operators.MapOperatorActivity" />
-        <activity android:name=".operators.FlatMapActivity" />
-        <activity android:name=".operators.SwitchMapOperatorActivity" />
+        <activity android:name=".operators.MapOperatorActivity" >
+
+        </activity>
+        <activity android:name=".operators.FlatMapActivity" >
+
+        </activity>
+        <activity android:name=".operators.SwitchMapOperatorActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".operators.BufferOperatorActivity" />
         <activity android:name=".operators.ReduceOperatorActivity" />
         <activity android:name=".operators.ConcatOperatorActivity" />
@@ -43,14 +51,14 @@
         <activity android:name=".operators.RangeOperatorActivity" />
         <activity android:name=".operators.MergeOperatorActivity" />
         <activity android:name=".operators.ZipOperatorActivity" />
-        <activity android:name=".operators.FilterOperatorActivity" />
+        <activity android:name=".operators.FilterOperatorActivity"></activity>
         <activity android:name=".operators.TakeOperatorActivity" />
         <activity android:name=".operators.JustOperatorActivity" />
         <activity android:name=".operators.FromOperatorActivity" />
-        <activity android:name=".observers.PublishSubjectActivity" />
-        <activity android:name=".observers.ReplaySubjectActivity" />
-        <activity android:name=".observers.BehaviorSubjectActivity" />
-        <activity android:name=".observers.AsyncSubjectActivity" />
+        <activity android:name=".subjects.PublishSubjectActivity" />
+        <activity android:name=".subjects.ReplaySubjectActivity" />
+        <activity android:name=".subjects.BehaviorSubjectActivity" />
+        <activity android:name=".subjects.AsyncSubjectActivity" />
         <activity android:name=".operators.GroupByOperatorActivity" />
         <activity android:name=".operators.SkipOperatorActivity" />
         <activity android:name=".operators.JoinOperatorActivity" />
@@ -62,11 +70,9 @@
         <activity android:name=".operators.DebounceOperatorActivity" />
         <activity android:name=".operators.RepeatOperatorActivity" />
         <activity android:name=".operators.DistinctOperatorActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        </activity>
+        <activity android:name=".operators.ConcatMapOperatorActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
