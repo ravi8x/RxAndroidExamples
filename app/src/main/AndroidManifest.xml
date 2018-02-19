@@ -17,11 +17,19 @@
         <activity android:name=".basics.Example3Activity" />
         <activity android:name=".basics.Example4Activity" />
         <activity android:name=".basics.Example5Activity"></activity>
-        <activity android:name=".observers.ObserverActivity" />
-        <activity android:name=".observers.FlowableObserverActivity" />
-        <activity android:name=".observers.SingleObserverActivity" />
+        <activity android:name=".observers.ObserverActivity" >
+
+        </activity>
+        <activity android:name=".observers.FlowableObserverActivity">
+
+        </activity>
+        <activity android:name=".observers.SingleObserverActivity" >
+
+        </activity>
         <activity android:name=".observers.MaybeObserverActivity" />
-        <activity android:name=".observers.CompletableObserverActivity" />
+        <activity android:name=".observers.CompletableObserverActivity" >
+
+        </activity>
         <activity android:name=".networking.volley.JsonObjectRequestActivity" />
         <activity android:name=".networking.retrofit.ContactsListActivity" />
         <activity android:name=".networking.retrofit.ContactsSearchLocalActivity" />
@@ -31,21 +39,21 @@
         <activity android:name=".rxbinding.SpinnerRxBindingActivity" />
         <activity android:name=".rxbinding.RecyclerViewRxBindingActivity" />
         <activity android:name=".recyclerview.RecyclerViewPagingActivity" />
-        <activity android:name=".operators.MapOperatorActivity" >
+        <activity android:name=".operators.MapOperatorActivity">
 
         </activity>
-        <activity android:name=".operators.FlatMapActivity" >
+        <activity android:name=".operators.FlatMapActivity">
 
         </activity>
-        <activity android:name=".operators.SwitchMapOperatorActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".operators.SwitchMapOperatorActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".operators.BufferOperatorActivity" />
-        <activity android:name=".operators.ReduceOperatorActivity" />
+        <activity android:name=".operators.BufferOperatorActivity" >
+
+        </activity>
+        <activity android:name=".operators.ReduceOperatorActivity" >
+
+        </activity>
         <activity android:name=".operators.ConcatOperatorActivity" />
         <activity android:name=".operators.ReplayOperatorActivity" />
         <activity android:name=".operators.RangeOperatorActivity" />
@@ -66,11 +74,18 @@
         <activity android:name=".operators.SumOperatorActivity" />
         <activity android:name=".operators.MaxOperatorActivity" />
         <activity android:name=".operators.MinOperatorActivity" />
-        <activity android:name=".operators.CountOperatorActivity" />
-        <activity android:name=".operators.DebounceOperatorActivity" />
-        <activity android:name=".operators.RepeatOperatorActivity" />
-        <activity android:name=".operators.DistinctOperatorActivity">
+        <activity android:name=".operators.CountOperatorActivity" >
+
         </activity>
+        <activity android:name=".operators.DebounceOperatorActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".operators.RepeatOperatorActivity" />
+        <activity android:name=".operators.DistinctOperatorActivity"></activity>
         <activity android:name=".operators.ConcatMapOperatorActivity">
 
         </activity>

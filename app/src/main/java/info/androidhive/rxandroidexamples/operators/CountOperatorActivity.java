@@ -24,7 +24,7 @@ public class CountOperatorActivity extends AppCompatActivity {
 
     private static final String TAG = CountOperatorActivity.class.getSimpleName();
 
-    private CompositeDisposable disposable = new CompositeDisposable();
+    private Disposable disposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +39,10 @@ public class CountOperatorActivity extends AppCompatActivity {
                     }
                 })
                 .count()
-                .subscribe(new SingleObserver<Long>() {
+                .subscribeWith(new SingleObserver<Long>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        disposable = d;
                     }
 
                     @Override
@@ -97,7 +97,7 @@ public class CountOperatorActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        disposable.clear();
+        disposable.dispose();
         super.onDestroy();
     }
 }

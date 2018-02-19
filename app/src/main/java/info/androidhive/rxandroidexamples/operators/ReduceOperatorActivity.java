@@ -21,7 +21,6 @@ public class ReduceOperatorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reduce_operator);
 
-        // calculating sum of 1 - 10 numbers
         Observable
                 .range(1, 10)
                 .reduce(new BiFunction<Integer, Integer, Integer>() {

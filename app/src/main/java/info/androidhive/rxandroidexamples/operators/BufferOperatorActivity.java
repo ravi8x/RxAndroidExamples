@@ -1,29 +1,26 @@
 package info.androidhive.rxandroidexamples.operators;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.List;
-import java.util.Observable;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 import info.androidhive.rxandroidexamples.R;
+import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
-import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
 public class BufferOperatorActivity extends AppCompatActivity {
 
@@ -69,7 +66,7 @@ public class BufferOperatorActivity extends AppCompatActivity {
                         if (integers.size() > 0) {
                             maxTaps = integers.size() > maxTaps ? integers.size() : maxTaps;
                             txtTapResult.setText(String.format("Received %d taps in 3 secs", integers.size()));
-                            txtTapResultMax.setText(String.format("%d maximum taps in 3 secs", maxTaps));
+                            txtTapResultMax.setText(String.format("Maximum of %d taps received in this session", maxTaps));
                         }
                     }
 
@@ -81,6 +78,41 @@ public class BufferOperatorActivity extends AppCompatActivity {
                     @Override
                     public void onComplete() {
                         Log.e(TAG, "onComplete");
+                    }
+                });
+
+
+        /**
+         * Example of buffer emitting 3 items at a time
+         * */
+        Observable<Integer> integerObservable = Observable.just(1, 2, 3, 4,
+                5, 6, 7, 8, 9);
+
+        integerObservable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .buffer(3)
+                .subscribe(new Observer<List<Integer>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<Integer> integers) {
+                        Log.d(TAG, "onNext");
+                        for (Integer integer : integers) {
+                            Log.d(TAG, "Item: " + integer);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "All items emitted!");
                     }
                 });
     }
