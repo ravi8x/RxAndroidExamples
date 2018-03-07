@@ -30,7 +30,6 @@
         <activity android:name=".observers.CompletableObserverActivity" >
 
         </activity>
-        <activity android:name=".networking.volley.JsonObjectRequestActivity" />
         <activity android:name=".networking.retrofit.ContactsListActivity" />
         <activity android:name=".networking.retrofit.ContactsSearchLocalActivity" />
         <activity android:name=".networking.retrofit.ContactsSearchRemoteActivity" />
