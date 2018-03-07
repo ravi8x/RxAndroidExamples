@@ -14,8 +14,10 @@ import info.androidhive.rxandroidexamples.operators.model.User;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -23,82 +25,44 @@ public class MergeOperatorActivity extends AppCompatActivity {
 
     private static final String TAG = ConcatOperatorActivity.class.getSimpleName();
 
-    private CompositeDisposable disposable = new CompositeDisposable();
+    private Disposable disposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merge_operator);
 
-        disposable.add(
-                Observable
-                        .merge(getMaleObservable1(), getFemaleObservable1())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeWith(new DisposableObserver<User>() {
-                            @Override
-                            public void onNext(User user) {
-                                Log.e(TAG, user.getName() + ", " + user.getGender());
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-
-                            }
-
-                            @Override
-                            public void onComplete() {
-
-                            }
-                        }));
-    }
-
-    private Observable<List<User>> getMaleUsersObservale() {
-        return Observable
-                .interval(1, TimeUnit.SECONDS)
-                .fromCallable(new Callable<List<User>>() {
+        /**
+         * When merge is used, you can see the order not maintained
+         * You can see both male and female users emitted without an order
+         * */
+        Observable
+                .merge(getMaleObservable(), getFemaleObservable())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new Observer<User>() {
                     @Override
-                    public List<User> call() throws Exception {
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
+                    }
 
-                        String[] names = new String[]{"Mark", "John", "Trump", "Obama"};
+                    @Override
+                    public void onNext(User user) {
+                        Log.e(TAG, user.getName() + ", " + user.getGender());
+                    }
 
-                        List<User> users = new ArrayList<>();
-                        for (String name : names) {
-                            User user = new User();
-                            user.setName(name);
-                            user.setGender("male");
+                    @Override
+                    public void onError(Throwable e) {
 
-                            users.add(user);
-                        }
+                    }
 
-                        return users;
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
     }
 
-    private Observable<List<User>> getFemaleUsersObservable() {
-        return Observable
-                .interval(2, TimeUnit.SECONDS)
-                .fromCallable(new Callable<List<User>>() {
-                    @Override
-                    public List<User> call() throws Exception {
-
-                        String[] names = new String[]{"Lucy", "Scarlett", "April"};
-
-                        List<User> users = new ArrayList<>();
-                        for (String name : names) {
-                            User user = new User();
-                            user.setName(name);
-                            user.setGender("female");
-
-                            users.add(user);
-                        }
-
-                        return users;
-                    }
-                });
-    }
-
-    private Observable<User> getFemaleObservable1() {
+    private Observable<User> getFemaleObservable() {
         String[] names = new String[]{"Lucy", "Scarlett", "April"};
 
         final List<User> users = new ArrayList<>();
@@ -127,7 +91,7 @@ public class MergeOperatorActivity extends AppCompatActivity {
                 }).subscribeOn(Schedulers.io());
     }
 
-    private Observable<User> getMaleObservable1() {
+    private Observable<User> getMaleObservable() {
         String[] names = new String[]{"Mark", "John", "Trump", "Obama"};
 
         final List<User> users = new ArrayList<>();
@@ -160,6 +124,6 @@ public class MergeOperatorActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        disposable.clear();
+        disposable.dispose();
     }
 }

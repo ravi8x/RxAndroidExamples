@@ -54,10 +54,18 @@
         <activity android:name=".operators.ReduceOperatorActivity" >
 
         </activity>
-        <activity android:name=".operators.ConcatOperatorActivity" />
+        <activity android:name=".operators.ConcatOperatorActivity" >
+
+        </activity>
         <activity android:name=".operators.ReplayOperatorActivity" />
         <activity android:name=".operators.RangeOperatorActivity" />
-        <activity android:name=".operators.MergeOperatorActivity" />
+        <activity android:name=".operators.MergeOperatorActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".operators.ZipOperatorActivity" />
         <activity android:name=".operators.FilterOperatorActivity"></activity>
         <activity android:name=".operators.TakeOperatorActivity" />
@@ -78,11 +86,7 @@
 
         </activity>
         <activity android:name=".operators.DebounceOperatorActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".operators.RepeatOperatorActivity" />
         <activity android:name=".operators.DistinctOperatorActivity"></activity>
