@@ -33,8 +33,8 @@ public class SpinnerRxBindingActivity extends AppCompatActivity {
 
         RxAdapterView.itemSelections(spinner)
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(planet -> {
-                    Log.e(TAG,"planet: "+planet);
+                .subscribe(planetNumber -> {
+                    Log.e(TAG,"planet: "+planetNumber);
                 });
     }
 }
