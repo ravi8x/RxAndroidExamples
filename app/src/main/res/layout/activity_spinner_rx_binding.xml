@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context="info.androidhive.rxandroidexamples.rxbinding.SpinnerRxBindingActivity">
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </Spinner>
+
 </android.support.constraint.ConstraintLayout>
