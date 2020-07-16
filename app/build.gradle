@@ -34,6 +34,7 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
 
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava"
+    implementation "io.reactivex:rxjava:$rootProject.rxjava1"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroid"
     implementation "io.reactivex:rxjava-math:$rootProject.rxjavaMath"
 
